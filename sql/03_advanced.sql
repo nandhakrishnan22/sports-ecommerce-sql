@@ -282,16 +282,14 @@ ORDER BY sales_month;
 -- Create a stored procedure to retrieve the purchase
 -- history of a specific customer.
 
+drop procedure if exists GetCustomerSales;
 
-DROP PROCEDURE IF EXISTS GetCustomerSales;
+delimiter $$
 
-DELIMITER $$
-CALL GetCustomerSales(11037);
+create procedure GetCustomerSales(in customer_id int)
+begin
 
-CREATE PROCEDURE GetCustomerSales(IN customer_id INT)
-BEGIN
-
-    SELECT
+    select
         c.CustomerKey,
         c.FullName,
         s.SalesID,
@@ -301,17 +299,18 @@ BEGIN
         s.OrderQuantity,
         s.UnitPrice,
         s.SalesAmount
-    FROM customers c
-    JOIN sales s
-        ON c.CustomerKey = s.CustomerKey
-    JOIN products p
-        ON s.ProductKey = p.ProductKey
-    WHERE c.CustomerKey = customer_id
-    ORDER BY s.OrderDate;
+    from customers c
+    join sales s
+        on c.CustomerKey = s.CustomerKey
+    join products p
+        on s.ProductKey = p.ProductKey
+    where c.CustomerKey = customer_id
+    order by s.OrderDate;
 
-END $$
+end $$
 
-DELIMITER ;
+delimiter ;
+
 
 
 -- Test the stored procedure
