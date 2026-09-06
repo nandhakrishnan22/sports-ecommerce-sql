@@ -73,16 +73,16 @@ ORDER BY total_revenue DESC;
 
 -- Which customers have made more than one purchase?
 
-SELECT
+select
     c.CustomerKey,
     c.FullName,
-    COUNT(s.SalesID) AS number_of_purchases
-FROM customers c
-JOIN sales s
-    ON c.CustomerKey = s.CustomerKey
-GROUP BY c.CustomerKey, c.FullName
-HAVING COUNT(s.SalesID) > 1
-ORDER BY number_of_purchases DESC;
+    count(distinct s.SalesOrderNumber) as number_of_purchases
+from customers c
+join sales s
+    on c.CustomerKey = s.CustomerKey
+group by c.CustomerKey, c.FullName
+having count(distinct s.SalesOrderNumber) > 1
+order by number_of_purchases desc;
 
 
 
