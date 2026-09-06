@@ -139,7 +139,7 @@ GROUP BY p.ProductKey, p.ProductName
 ORDER BY total_revenue DESC
 LIMIT 10;
 
-![02_top_products.png.png](screenshots/02_top_products.png.png)
+![02_top_products.png.png](screenshots/02_top_products.png)
 
 SELECT
     c.CustomerKey,
@@ -152,7 +152,7 @@ GROUP BY c.CustomerKey, c.FullName
 ORDER BY total_spent DESC
 LIMIT 10;
 
-![03_top_customers.png.png](screenshots/03_top_customers.png.png)
+![03_top_customers.png.png](screenshots/03_top_customers.png)
 
 
 SELECT
@@ -165,7 +165,7 @@ JOIN products p
 GROUP BY p.Category
 ORDER BY total_revenue DESC;
 
-![04_category_performance.png.png](screenshots/04_category_performance.png.png)
+![04_category_performance.png.png](screenshots/04_category_performance.png)
 
 
 WITH product_ranking AS
@@ -194,6 +194,6 @@ FROM product_ranking
 WHERE category_rank <= 3
 ORDER BY Category, category_rank;
 
-![04_category_performance.png.png](screenshots/04_category_performance.png.png)
+![04_category_performance.png.png](screenshots/04_category_performance.png)
 
 
