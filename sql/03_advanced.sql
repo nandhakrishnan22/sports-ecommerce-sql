@@ -1,17 +1,17 @@
 USE sports_ecommerce;
 
--- ============================================================
+
 -- SPORTS E-COMMERCE SQL PROJECT
 -- ADVANCED SQL QUERIES
--- Queries 31 - 40
--- ============================================================
 
 
--- ============================================================
--- QUERY 31
+
+
+
+
 -- Which products generated revenue above the average
 -- product revenue?
--- ============================================================
+
 
 SELECT
     p.ProductKey,
@@ -36,10 +36,10 @@ HAVING SUM(s.SalesAmount) >
 ORDER BY total_revenue DESC;
 
 
--- ============================================================
--- QUERY 32
+
+
 -- Which customers spent more than the average customer?
--- ============================================================
+
 
 SELECT
     c.CustomerKey,
@@ -64,10 +64,9 @@ HAVING SUM(s.SalesAmount) >
 ORDER BY total_spent DESC;
 
 
--- ============================================================
--- QUERY 33
--- Rank all products based on total revenue.
--- ============================================================
+
+
+-- Rank all products based on total revenue.?
 
 SELECT
     p.ProductKey,
@@ -83,10 +82,10 @@ GROUP BY p.ProductKey, p.ProductName
 ORDER BY revenue_rank;
 
 
--- ============================================================
--- QUERY 34
+
+
 -- Rank products within each product category based on revenue.
--- ============================================================
+
 
 SELECT
     p.Category,
@@ -109,10 +108,9 @@ ORDER BY
     category_rank;
 
 
--- ============================================================
--- QUERY 35
 -- Find the top 3 products in each category.
--- ============================================================
+
+
 
 WITH product_ranking AS
 (
@@ -145,11 +143,11 @@ WHERE category_rank <= 3
 ORDER BY Category, category_rank;
 
 
--- ============================================================
--- QUERY 36
+
 -- Calculate monthly revenue and rank the months
 -- from highest to lowest revenue.
--- ============================================================
+
+
 
 WITH monthly_revenue AS
 (
@@ -177,11 +175,12 @@ FROM monthly_revenue
 ORDER BY revenue_rank;
 
 
--- ============================================================
--- QUERY 37
+
+
 -- Calculate each product's percentage contribution
 -- to total revenue.
--- ============================================================
+
+
 
 WITH product_revenue AS
 (
@@ -210,10 +209,10 @@ FROM product_revenue
 ORDER BY total_revenue DESC;
 
 
--- ============================================================
--- QUERY 38
+
 -- Find the highest-revenue product for each category.
--- ============================================================
+
+
 
 WITH category_products AS
 (
@@ -245,10 +244,10 @@ WHERE product_rank = 1
 ORDER BY total_revenue DESC;
 
 
--- ============================================================
--- QUERY 39
+
+
 -- Create a reusable view showing monthly sales performance.
--- ============================================================
+
 
 CREATE OR REPLACE VIEW monthly_sales_summary AS
 SELECT
@@ -278,11 +277,11 @@ FROM monthly_sales_summary
 ORDER BY sales_month;
 
 
--- ============================================================
--- QUERY 40
+
+
 -- Create a stored procedure to retrieve the purchase
 -- history of a specific customer.
--- ============================================================
+
 
 DROP PROCEDURE IF EXISTS GetCustomerSales;
 
@@ -321,6 +320,5 @@ DELIMITER ;
 CALL GetCustomerSales(11037);
 
 
--- ============================================================
+
 -- END OF ADVANCED QUERIES
--- ============================================================
